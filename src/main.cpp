@@ -4,36 +4,37 @@
  *  Created on: 2016-10-12
  *      Author: togaua
  */
-
+#include <locale>
 #include <iostream>
 #include <string>
 #include "Graphe.h"
 #include "Vehicule.h"
 
-// CECI EST UN COMMENTAIRE PUSHED
-
 using namespace std;
 
 int main() {
-	string message = "\nEntrez le numero correspondant a l'option desiree:\n"
+
+	setlocale(LC_ALL, "");    // makes accents printable
+
+	string menu = "\nEntrez le numéro correspondant a l'option desirée:\n"
 			"1 : Entrer les caracteristiques du vehicule\n"
 			"2 : Mettre a jour la carte\n"
 			"3 : Determiner le plus court chemin\n"
 			"4 : Quitter\n";
-	int number = 0;
+	int option = 0;
 	Vehicule* vehicule = nullptr;
 
-	while (number != 4)
+	while (option != 4)
 	{
-		cout << message << endl;
-		cin >> number;
+		cout << menu << endl;
+		cin >> option;
 
-		if (number == 1)
+		if (option == 1)
 		{
 			string type;
 			int autonomieMax, autonomieActuelle;
 
-			cout << "Entrez caracteristiques du vehicules:\n"
+			cout << "Entrez caractéristiques du véhicules:\n"
 				<< "- Type de carburant (essence, elec ou multi) :" << endl;
 			cin >> type;
 			cout << "- Autonomie maximale (entier positif) : " << endl;
@@ -55,24 +56,24 @@ int main() {
 			}
 			else
 			{
-				cout << "Parametres invalides. Veuillez recommencer.\n";
+				cout << "Paramètres invalides. Veuillez recommencer.\n";
 			}
 		}
-		else if (number == 2)
+		else if (option == 2)
 		{
-			cout << "Veuillez entrer le nom du fichier a utiliser:" << endl;
+			cout << "Veuillez entrer le nom du fichier à utiliser:" << endl;
 			string nomFichierGraphe;
 			cin >> nomFichierGraphe;
 			cout << "creerGraphe(" << nomFichierGraphe << ");" << endl;
 		}
-		else if (number == 3)
+		else if (option == 3)
 		{
 			if (vehicule != nullptr)
 			{
 				string depart, arrivee;
-				cout << "Veuillez entrer le point de depart:" << endl;
+				cout << "Veuillez entrer le point de départ:" << endl;
 				cin >> depart;
-				cout << "Veuillez entrer le point d'arrivee:" << endl;
+				cout << "Veuillez entrer le point d'arrivée:" << endl;
 				cin >> arrivee;
 
 				//Sommet sommetDepart = graphe.trouverSommet(depart);
@@ -81,13 +82,13 @@ int main() {
 			}
 			else
 			{
-				cout << "Veuillez entrer les caracteristiques du vehicule avec l'option 1." << endl;
+				cout << "Veuillez entrer les caractéristiques du véhicule avec l'option 1." << endl;
 			}
 		}
-		else if (number == 4)
+		else if (option == 4)
 		{
 			// on sort de la boucle avec la condition du while
-			cout << "Programme termine." << endl;
+			cout << "Programme terminé." << endl;
 		}
 		else
 		{
@@ -105,7 +106,7 @@ int main() {
 		{
 			if (listSommets_[i].getIdentifiant == identifiant)
 			{
-				return listSommets [i];
+				return listSommets_[i];
 			}
 		}
 	}
